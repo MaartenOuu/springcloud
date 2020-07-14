@@ -1,0 +1,16 @@
+server:
+  port: 91
+
+spring:
+  application:
+    name: nacos-feign-order
+  cloud:
+    nacos:
+      discovery:
+#        server-addr: localhost:8848
+        server-addr: localhost:345
+
+#激活feign对sentinel支持
+feign:
+  sentinel:
+    enabled: true

@@ -1,0 +1,43 @@
+server:
+  port: 9901
+
+spring:
+  application:
+    name: sentinel-serivce
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        #配置sentinel dashboard地址
+        dashboard: localhost:8800
+        #默认8719端口，假如被占用自动从8719开始+1扫描，直到未被占用
+        port: 8762
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: sentinel-serivce
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#
+#  [
+#  {
+#    "resource": "/byResource", //资源名称
+#    "limitApp": "default",   //来源应用
+#    "grade": 1,               //阈值类型，0表示线程数，1表示QPS
+#    "count": 1,                //单机阈值
+#    "strategy": 0,              //流控模式，0表示直接，1表示关联，2表示链路；
+#    "controlBehavior": 0,       //流控效果，0表示快速失败，1表示Warm Up,2表示排队等待
+#    "clusterMode": false        //是否集群
+#  }
+#  ]
